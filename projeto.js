@@ -13,7 +13,7 @@ function parimpar (quociente){
 }
 
 let resultado = ale(5, 2)
-console.log(resultado)
+//console.log(resultado)
 
 const array =[1,2,7,33,1491]
 
@@ -25,4 +25,20 @@ for(let num = 0; num < array.length; num++){
         "tipo": parimpar(array[num])
     })
 }
-console.log(array2);
+//console.log(array2);
+
+const pares = []
+
+const impares = []
+
+for(let i = 0; i < array.length; i++){
+    if(array2[i].tipo == 'par'){
+        pares.push(array2[i].numero)
+    }else{
+        impares.push(array2[i].numero)
+    }
+}
+
+console.log(pares);
+
+console.log(impares);
