@@ -7,22 +7,31 @@ const objects = []
 
 function separaArrays(array) {
     for(i=0;i<array.length;i++){
-        if(typeof array[i] == 'string'){
-            strings.push(array[i])
-        }else if(typeof array[i] == 'number'){
-            numbers.push(array[i])
-        }else if (Array.isArray(array[i])){
-                for(j=0;j<array[i].length;j++){
-                     array.push(array[i][j])}
-        }else if (typeof array[i] == 'boolean'){
-            Booleans.push(array[i])
-        }else if(typeof array[i] == "object"){
-            objects.push(array[i])
+        switch (typeof array[i]) {
+            case 'string':
+                strings.push(array[i])
+            break;
+            
+            case 'number':
+                numbers.push(array[i])
+            break;
+
+            case 'object':
+                if(Array.isArray(array[i])){
+                 for(j=0;j<array[i].length;j++){
+                  array.push(array[i][j])}
+                }else{
+                    objects.push(array[i]) 
+                }
+            break;
+
+            case 'boolean':
+                Booleans.push(array[i])
+            break;
         }
     }
 }
 separaArrays(array)
-
 
 console.log(strings);
 console.log(numbers);
