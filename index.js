@@ -54,5 +54,5 @@
    return persons[personIndex].isActive;
  }
  
- module.exports = { createPerson, getActivePersons, deactivatePersonById };
+ module.exports = { createPerson, getActivePersons, deactivatePersonById, persons};
  

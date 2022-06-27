@@ -1,67 +1,87 @@
 // Write your tests here.
 
 const app = require("./index.js");
+const persons = app.persons
+let keepgoing = true
+const createdPersons = [{name: 'Lauro', age: 15, gender: 'M', isActive: true}]
 
-const createdPersons = [{name: 'Lauro', age: 15, gender: 'M', isActive: true}, {name: 'Isa', age: 16, gender: 'F', id: 2, isActive: true}]
-
-
-function testCreatePerson(testPerson, indexPerson) {
-
-    if (testPerson.name == indexPerson.name 
-        && testPerson.age ==  indexPerson.age 
-        && testPerson.gender == indexPerson.gender
-        && indexPerson.isActive == true){
-        console.log('testCreatePersonResult: working normaly');}
-    else {
-        let testResult = "testCreatePersonTest result:"
-
-        if(indexPerson.isActive != true || indexPerson.isActive != testPerson.isActive){
-            testResult += 'isActive, '
+app.createPerson('Lauro', 15, 'M')
+function testCreatePerson() {
+    if(keepgoing == true){
+        if (createdPersons[0].name == persons[0].name 
+            && createdPersons[0].age ==  persons[0].age 
+            && createdPersons[0].gender == persons[0].gender
+            && persons[0].isActive == true){
+            console.log('testCreatePersonResult: working normaly');}
+    
+        else {
+            let testResult = "testCreatePersonTest result:"
+    
+            if(persons[0].isActive != true || persons[0].isActive != createdPersons[0].isActive){
+                testResult += 'isActive, '
+            }
+            if(persons[0].name != createdPersons[0].name){
+                testResult += 'name, '
+            }
+            if(persons[0].age != createdPersons[0].age){
+               testResult += 'age, '
+            }
+            if(persons[0].gender != createdPersons[0].gender){
+                testResult += 'gender, '
+            }
+    
+            testResult += `are not working`
+            console.log(testResult);
+            keepgoing = false
         }
-        if(indexPerson.name != testPerson.name){
-            testResult += 'name, '
-        }
-        if(indexPerson.age != testPerson.age){
-           testResult += 'age, '
-        }
-        if(indexPerson.gender != testPerson.gender){
-            testResult += 'gender, '
-        }
-
-        testResult += `are not working`
-        console.log(testResult);
+        persons.pop()
+        createdPersons.pop()
     }
 }
 
-testCreatePerson(createdPersons[1], app.createPerson('Isa', 16, 'F'))
-
-
-app.createPerson('Isa', 16, 'F');
 
 let deactivatedPersons = 0
-function testDeactivatePerason(id){
-    if (app.deactivatePersonById(id) == false ) {
-        console.log('testDeactivatePersonResult: working normaly');
-        deactivatedPersons++
-    }else {
-        console.log('testDeactivatePersonResult: test faild');
+function testDeactivatePerson(){
+    if(keepgoing == true){
+        persons.push({ id: 1, name: 'Lauro', age: 15, gender: 'M', isActive: true })
+        app.deactivatePersonById(1)
+        if (persons[0].isActive == false) {
+            console.log('testDeactivatePersonResult: working normaly');
+            deactivatedPersons++
+        }else {
+            console.log('testDeactivatePersonResult: deactivation faild');
+            keepgoing = false
+        }
+        persons.pop()
     }
 }
+
+
 
 
 function testGetActivePerson(){
-    if (app.getActivePersons().length == createdPersons.length - deactivatedPersons) {
-        console.log(`testGetActivePersonResult: working normaly`);
-    }else if (app.getActivePersons().length < createdPersons.length - deactivatedPersons){
-        console.log(`testGetActivePersonResult: test faild --> less active persons than expected`);
-    } 
-    else{
-        console.log(`testGetActivePersonResult: test faild --> more active persons than expected`);       
+    if(keepgoing == true){
+        persons.pop()
+        persons.push({ id: 1, name: 'Lauro', age: 15, gender: 'M', isActive: true},
+         { id: 3, name: 'Bruno', age: 24, gender: 'M', isActive: false}, { id: 2, name: 'Iza', age: 22, gender: 'F', isActive: true})
+        let i = 0
+        const activePersons = app.getActivePersons()
+        while (i < activePersons.length) {
+            const person = activePersons[i]
+            if (person.isActive == true) {
+                i++
+            }else{
+                console.log(`testGetActivePersonResult: test faild --> inactive person returned`);
+                keepgoing = false
+                return 0
+
+            }if (i == persons.length){
+                console.log('testGetActivePersonResult: working normaly');
+            }
+        }
     }
+    persons.pop()
 }
-
-testGetActivePerson()
-
-testDeactivatePerason(2)
-
+testCreatePerson()
+testDeactivatePerson()
 testGetActivePerson()
