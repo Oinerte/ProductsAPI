@@ -40,14 +40,13 @@ function testCreatePerson() {
 }
 
 
-let deactivatedPersons = 0
+
 function testDeactivatePerson(){
     if(keepgoing == true){
         persons.push({ id: 1, name: 'Lauro', age: 15, gender: 'M', isActive: true })
         app.deactivatePersonById(1)
         if (persons[0].isActive == false) {
             console.log('testDeactivatePersonResult: working normaly');
-            deactivatedPersons++
         }else {
             console.log('testDeactivatePersonResult: deactivation faild');
             keepgoing = false
