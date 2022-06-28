@@ -1,1 +1,0 @@
-reposítório para estudo de APIs
