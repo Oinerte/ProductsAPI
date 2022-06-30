@@ -16,31 +16,18 @@ const products = require('./products').products
  * (GET) /products/:id Get product by id
  * (POST) /products Create product
  * (PUT) /products/1 Update product
- * (DELETE) /products/1 Delete product
+ * (DELETE) /products/1 Update product
  */
 
-function getProductsById(id){
 
-    return id
-}
+
 
 const server = http.createServer((req, res) => {
     const { method, url } = req
-    switch (method) {
-        case 'GET':
-            if(url == '/products'){
-                res.end(`the avaliable products are: ${products}`)
-            }else{
-                res.end(`${getProductsById(url.replace(/[^0-9]/g,''))}`)
-            }
-            break;
-        
-        case 'POST':
-
-        default:
-            break;
-    }
+    console.log({method, url});
 });
+
+
 
 server.listen(port, () => {
     console.log(`Server is running on port ${port}`)

@@ -24,6 +24,6 @@ class Product {
 
 }
 
-const products = []
+const products = ['produto1', 'produto2', 'produto3']
 
-module.exports = { Product };
+module.exports = { Product, products };
