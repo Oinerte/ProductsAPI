@@ -48,11 +48,9 @@ const server = http.createServer((req, res) => {
                 let prod = new Product(nomeP, priceP)
                 products.push(prod)
             });
-            res.end('Product created succesfully');
-            break;
 
-        case 'PUT':
-            
+            // const prod = new Product(duto.name, duto.price)
+            res.end('Product created succesfully');
             break;
     }
     

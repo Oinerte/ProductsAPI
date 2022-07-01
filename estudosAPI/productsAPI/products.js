@@ -1,11 +1,10 @@
+let TempID = 1
 class Product {
     id
     name
     price
     created
     upDated
-
-    TempID = 1
 
     constructor(name, price){
         this.name = name
@@ -16,14 +15,14 @@ class Product {
         var ano = data. getFullYear();
         this.created = dia + '/' + mes + '/' + ano;
         this.upDated = this.created
-        this.id = this.TempID
-        this.TempID++
+        this.id = TempID
+        TempID++
     }
 
 
 
 }
 
-const products = [{id: 1, name: 'pão', price: 15.00, created: '25/12/02'},{id: 2, name: 'cebola', price: 15.00, created: '25/12/02'},{id: 3, name: 'tomate', price: 15.00, created: '25/12/02'},{id: 4, name: 'maçã', price: 15.00, created: '25/12/02'}]
+const products = []
 
 module.exports = { Product, products };
