@@ -24,6 +24,6 @@ class Product {
 
 }
 
-const products = ['produto1', 'produto2', 'produto3']
+const products = [{id: 1, name: 'pão', price: 15.00, created: '25/12/02'},{id: 2, name: 'cebola', price: 15.00, created: '25/12/02'},{id: 3, name: 'tomate', price: 15.00, created: '25/12/02'},{id: 1, name: 'pão', price: 15.00, created: '25/12/02'}]
 
 module.exports = { Product, products };
