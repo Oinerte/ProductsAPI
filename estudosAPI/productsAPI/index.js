@@ -39,7 +39,8 @@ const server = http.createServer((req, res) => {
             break;
         
         case 'POST':
-            res.end(url);
+            res.end(JSON.stringify(url));
+            console.log(url);
             break;
     }
 });
