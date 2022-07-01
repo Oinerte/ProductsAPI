@@ -22,7 +22,7 @@ const products = require('./products').products
 function getProductsById(id){
     for(i = 0; i < products.length; i++){
         if (products[i].id == id) {
-            return products[i]
+            return JSON.stringify(products[i])
         }
     }
 }
@@ -32,15 +32,14 @@ const server = http.createServer((req, res) => {
     switch (method) {
         case 'GET':
             if(url == '/products'){
-                res.end(`the avaliable products are: ${JSON.stringify(products)}`)
+                res.end(JSON.stringify(products))
             }else{
                 res.end(`${getProductsById(url.replace(/[^0-9]/g,''))}`)
             }
             break;
         
         case 'POST':
-
-        default:
+            res.end(url);
             break;
     }
 });
