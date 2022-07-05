@@ -28,7 +28,8 @@ function getProductsById(id){
 }
 
 const server = http.createServer((req, res) => {
-    const { method, url } = req
+    const { method, url, headers } = req
+    headers['Access-Control-Allow-Origin: http://127.0.0.1:5501/index.html']
     switch (method) {
         case 'GET':
             if(url == '/products'){
