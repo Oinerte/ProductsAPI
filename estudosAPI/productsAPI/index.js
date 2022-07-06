@@ -1,3 +1,4 @@
+const { createSecretKey } = require('crypto');
 const http = require('http');
 
 const port = 8000; 
@@ -29,7 +30,7 @@ function getProductsById(id){
 
 const server = http.createServer((req, res) => {
     const { method, url, headers } = req
-    headers['Access-Control-Allow-Origin: http://127.0.0.1:5501/index.html']
+    res.setHeader('Access-Control-Allow-Origin', 'http://127.0.0.1:5500');
     switch (method) {
         case 'GET':
             if(url == '/products'){
@@ -40,14 +41,14 @@ const server = http.createServer((req, res) => {
             break;
         
         case 'POST':
-            let body = '';
             req.on('data', buffer => {
-                body += buffer.toString(); // convert Buffer to string
+                let body = buffer.toString(); // convert Buffer to string
                 let sendingData = JSON.parse(body)
                 let nomeP = sendingData.name
                 let priceP = sendingData.price
                 let prod = new Product(nomeP, priceP)
                 products.push(prod)
+                console.log(JSON.stringify(prod))
             });
             res.end('Product created succesfully');
             break;

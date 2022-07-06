@@ -7,9 +7,19 @@
     <title>Document</title>
     <script>
         function afuncao(){
-            fetch('http://localhost:8000/products').then(response => alert(responde.json()), {
+            fetch('http://localhost:8000/products').then(response =>response.json().then(console.log), {
             method: 'GET',
         })
+        }
+        function funcao(){
+            let formData =  {
+                                "name": "frango",
+                                "price": "15.50"
+                            }
+            fetch('http://localhost:8000/products/', {
+            method: 'POST', 
+            body: formData
+            })
         }
         /*, {
             method: 'post',
@@ -18,6 +28,7 @@
     </script>
 </head>
 <body>
-    <button onclick="afuncao()">me clica</button>
+    <button onclick="afuncao()">get</button>
+    <button onclick="funcao()">post</button>
 </body>
 </html>
